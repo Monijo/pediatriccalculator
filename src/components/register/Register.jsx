@@ -1,13 +1,17 @@
-import React, {useRef, useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {Link} from "react-router-dom";
-import "./login.css"
+import "./register.css"
 
 
-function Login(props) {
+
+function Register(props) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [name, setName] = useState("")
+
     const emailRef = useRef()
     const passwordRef = useRef()
+    const nameRef = useRef()
 
     function validate(){
         if(email === ""){
@@ -20,30 +24,40 @@ function Login(props) {
         }else{
             passwordRef.current.classList.remove("validation-error")
         }
+        if(name === ""){
+            nameRef.current.classList.add("validation-error")
+        }else{
+            nameRef.current.classList.remove("validation-error")
+        }
     }
 
     return (
-        <div className="login-box">
-            <h1>Zaloguj się</h1>
+        <div className="register-box">
+            <h1>Zarejestruj się</h1>
             <input type="text"
+                   ref={nameRef}
+                   placeholder="Imię"
+                   value={name}
+                   onChange={(e)=>setName(e.target.value)}/>
+            <input type="text"
+                   ref={emailRef}
                    placeholder="Email"
                    value={email}
-                   ref={emailRef}
                    onChange={(e)=>setEmail(e.target.value)}/>
             <input type="password"
-                   placeholder="Hasło"
                    ref={passwordRef}
+                   placeholder="Hasło"
                    value={password}
                    onChange={(e)=>setPassword(e.target.value)}/>
-            <p>Nie masz konta? <Link to="/register">Zarejestruj się</Link></p>
-            <button onClick={validate}>Zaloguj się</button>
+            <p>Masz już konto? <Link to="/login">Zaloguj się</Link></p>
+            <button onClick={validate}>Zarejestruj się</button>
             <p>
 
-            <Link to="/">Kontynuuj bez rejestracji</Link>
+                <Link to="/">Kontynuuj bez rejestracji</Link>
 
             </p>
         </div>
     );
 }
 
-export default Login;
+export default Register;
