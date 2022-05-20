@@ -3,5 +3,12 @@ body{
 }
 
 .validation-error{
-  border-bottom: 2px solid red;
+  border: 0.0625rem solid red;
+}
+input{
+  border: none;
+  border-bottom: 0.0625rem solid green;
+  margin-bottom: 0.3125rem;
+  background-color: aliceblue;
+  padding: 0.3125rem;
 }
